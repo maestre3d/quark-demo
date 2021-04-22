@@ -21,7 +21,7 @@ func NewTopicFromEvent(e Domain) string {
 		e.Entity(), e.Action(), e.Version())
 }
 
-func NewQueueFromEvent(e Domain, action string) string {
+func NewQueueFromEvent(e Domain, context, entity, action string) string {
 	// e.Action() is the event fact, not the action a queue will be used
-	return quark.FormatQueueName(e.Context(), e.Entity(), action, e.Action())
+	return quark.FormatQueueName(context, entity, action, e.Entity()+"_"+e.Action())
 }

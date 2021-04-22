@@ -21,14 +21,14 @@ func NewSubscriber() *quark.Broker {
 func newQuarkBroker() *quark.Broker {
 	broker := kafka.NewKafkaBroker(newSaramaConfig(),
 		quark.WithCluster("localhost:19092", "localhost:29092", "localhost:39092"),
-		quark.WithBaseMessageSource("https://cosmos.neutrinocorp.org"),
+		quark.WithBaseMessageSource("https://cosmos.neutrinocorp.org/notifications"),
 		quark.WithBaseMessageContentType("application/cloudevents+json"))
 	return broker
 }
 
 func newSaramaConfig() *sarama.Config {
 	config := sarama.NewConfig()
-	config.ClientID = "user-service"
+	config.ClientID = "notification-service"
 	config.Consumer.Offsets.Initial = sarama.OffsetOldest
 	config.Consumer.Return.Errors = true
 	config.Producer.Return.Successes = true

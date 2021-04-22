@@ -12,7 +12,7 @@ type UserPubSub struct{}
 
 func (c *UserPubSub) SetSubscribers(b *quark.Broker) {
 	b.Topic(event.NewTopicFromEvent(event.UserCreated{})).
-		Group(event.NewQueueFromEvent(event.UserCreated{}, "record_user")).
+		Group(event.NewQueueFromEvent(event.UserCreated{}, "analytics", "user", "record_user")).
 		HandleFunc(c.sendEmailWhenCreated)
 }
 

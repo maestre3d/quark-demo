@@ -22,6 +22,6 @@ func (c *UserPubSub) sendEmailWhenCreated(w quark.EventWriter, e *quark.Event) b
 		log.Println(err)
 		return false
 	}
-	log.Printf("%+v", usrCreated)
+	log.Printf("sending email to %s for user %s with ID %s", usrCreated.Email, usrCreated.Username, usrCreated.ID)
 	return true
 }
